@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SANAA — A continent of creativity. An infinite canvas.</title>
+<meta name="description" content="SANAA is a home for African creatives to showcase their work, discover opportunities and connect with people who value their craft.">
+<meta property="og:title" content="SANAA — A continent of creativity. An infinite canvas.">
+<meta property="og:description" content="A home for African creatives to showcase their work, discover opportunities and connect with people who value their craft.">
+<meta name="theme-color" content="#FDF2E0">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%20width%3D%2264%22%20height%3D%2264%22%20role%3D%22img%22%20aria-label%3D%22Sanaa%22%3E%0A%20%20%3Ctitle%3ESanaa%3C/title%3E%0A%20%20%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2214%22%20fill%3D%22%23111111%22/%3E%0A%20%20%3Crect%20x%3D%2213.00%22%20y%3D%2213.00%22%20width%3D%2217.81%22%20height%3D%2217.81%22%20rx%3D%223.96%22%20fill%3D%22%23FF6A13%22%20transform%3D%22rotate%280%2021.91%2021.91%29%22/%3E%0A%20%20%3Crect%20x%3D%2233.19%22%20y%3D%2213.00%22%20width%3D%2217.81%22%20height%3D%2217.81%22%20rx%3D%223.96%22%20fill%3D%22%23D5F244%22%20transform%3D%22rotate%280%2042.09%2021.91%29%22/%3E%0A%20%20%3Crect%20x%3D%2213.00%22%20y%3D%2233.19%22%20width%3D%2217.81%22%20height%3D%2217.81%22%20rx%3D%223.96%22%20fill%3D%22%23A982F5%22%20transform%3D%22rotate%280%2021.91%2042.09%29%22/%3E%0A%20%20%3Ccircle%20cx%3D%2242.09%22%20cy%3D%2242.09%22%20r%3D%228.91%22%20fill%3D%22%23FDF2E0%22/%3E%0A%3C/svg%3E%0A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,800..900&amp;family=Fraunces:opsz,wght@9..144,600..700&amp;family=Inter:wght@400;500;600;700&amp;family=Permanent+Marker&amp;display=swap" rel="stylesheet">
+<style>
+
+body{margin:0;background:#FDF2E0}
+a{color:#111111}a:hover{color:#B8430A}
+*:focus-visible{outline:3px solid #6D3FE0;outline-offset:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;font:600 16px/1 'Inter',sans-serif;text-decoration:none;cursor:pointer;border:0;transition:transform .2s ease}
+.btn:hover{transform:translateY(-2px)}
+.nav-links{display:flex;align-items:center;gap:4px 28px}
+.nav-link{display:inline-flex;align-items:center;min-height:44px;font:600 16px/1 'Inter',sans-serif;color:#111111;text-decoration:none}
+.menu-btn{display:none}
+.chip{min-height:44px;padding:0 18px;border-radius:999px;border:1.5px solid #111111;background:transparent;color:#111111;font:600 15px/1 'Inter',sans-serif;cursor:pointer}
+.chip:hover{background:#F6E3C4}
+.chip.is-on{background:#111111;color:#FDF2E0}
+.chapter{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:40px;gap:14px}
+.tile{position:relative;display:block;border:0;padding:0;margin:0;overflow:hidden;border-radius:18px;cursor:zoom-in;text-align:left;font:inherit;background:#111111;transition:opacity .35s ease,filter .35s ease,transform .35s ease}
+.tile img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.tilt-l{transform:rotate(-1.4deg)}.tilt-r{transform:rotate(1.2deg)}
+.tile:hover{transform:rotate(0deg) scale(1.015);z-index:6}
+.tile:hover img{transform:scale(1.04)}
+.tile.is-dim{opacity:.16;filter:grayscale(1)}
+.cap{position:absolute;left:10px;right:10px;bottom:10px;background:#111111;color:#FDF2E0;border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:3px;opacity:0;transform:translateY(10px);transition:opacity .25s ease,transform .25s ease}
+.cap-disc{font:700 11px/1.2 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#D5F244}
+.cap-title{font:700 17px/1.2 'Fraunces',serif}
+.cap-by{font:500 13px/1.3 'Inter',sans-serif;color:#E8DFCF}
+.cap-link{font:700 13px/1.3 'Inter',sans-serif;margin-top:4px}
+.tile:hover .cap,.tile:focus-visible .cap{opacity:1;transform:none}
+.ch{display:flex;flex-direction:column;justify-content:flex-end;gap:10px;padding:4px 8px 4px 0}
+.ch-num{font:700 13px/1 'Inter',sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#4A463F}
+.ch-title{margin:0;font:700 clamp(30px,3vw,42px)/1 'Fraunces',serif;letter-spacing:-.03em}
+.ch-text{margin:0;font-size:16px;line-height:1.5;color:#2B2925}
+.disc-card{position:relative;display:flex;flex-direction:column;border-radius:22px;overflow:hidden;text-decoration:none;min-height:340px;transition:transform .25s ease}
+.disc-card:hover{transform:translateY(-6px) rotate(-1deg)}
+.disc-card img{width:100%;height:200px;object-fit:cover;display:block}
+.disc-name{font:900 clamp(30px,2.6vw,40px)/.92 'Archivo',sans-serif;font-stretch:82%;letter-spacing:-.03em;text-transform:uppercase}
+.pillar{border-radius:24px;padding:28px;display:flex;flex-direction:column;gap:14px;min-height:340px}
+.stage{height:150px;border-radius:16px;background:rgba(255,255,255,.35);position:relative;overflow:hidden}
+@keyframes spot{0%,100%{transform:translate(-50%,-50%) scale(.85);opacity:.55}50%{transform:translate(-50%,-50%) scale(1.15);opacity:1}}
+@keyframes orbit{0%{transform:translate(-50%,-50%) rotate(0deg) translateX(34px) rotate(0deg)}100%{transform:translate(-50%,-50%) rotate(360deg) translateX(34px) rotate(-360deg)}}
+@keyframes meetL{0%,100%{transform:translateX(0)}50%{transform:translateX(26px)}}
+@keyframes meetR{0%,100%{transform:translateX(0)}50%{transform:translateX(-26px)}}
+@keyframes grow{0%,100%{transform:scaleY(.35)}50%{transform:scaleY(1)}}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(var(--r,0deg))}50%{transform:translateY(-10px) rotate(var(--r,0deg))}}
+.a-spot{animation:spot 2.8s ease-in-out infinite}
+.a-orbit{animation:orbit 5s linear infinite}
+.a-meetL{animation:meetL 3s ease-in-out infinite}
+.a-meetR{animation:meetR 3s ease-in-out infinite}
+.a-grow{animation:grow 2.4s ease-in-out infinite;transform-origin:bottom}
+.a-float{animation:floaty 6s ease-in-out infinite}
+.social{width:44px;height:44px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%}
+.social:hover{background:#2B2925}
+.foot-col a{color:#E8DFCF;text-decoration:none;display:inline-flex;min-height:32px;align-items:center}
+.foot-col a:hover{color:#D5F244}
+@media (hover:none){.cap{opacity:1;transform:none}.cap-link{display:none}}
+@media (max-width:860px){
+.nav-links,.nav-cta{display:none}
+.menu-btn{display:inline-flex}
+}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.people{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.discs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.m-only{display:none}
+@media (min-width:901px) and (max-width:1200px){.hero-h1{font-size:5.3vw !important}}
+@media (max-width:900px){.hero-h1{font-size:clamp(40px,7.6vw,72px) !important}}
+@media (max-width:1100px){
+.people{grid-template-columns:repeat(2,minmax(0,1fr))}
+.people > article{height:auto !important}
+}
+@media (max-width:900px){
+.chapter{grid-template-columns:repeat(3,minmax(0,1fr));grid-auto-rows:auto;grid-auto-flow:row dense;gap:12px}
+.chapter > *{grid-column:auto / span 1 !important;grid-row:auto !important;transform:none !important;height:230px;box-sizing:border-box}
+.chapter > .w2{grid-column:auto / span 2 !important}
+.chapter > .ch{grid-column:1 / -1 !important;height:auto;order:-1;padding:8px 0 4px !important}
+.chapter + .chapter{margin-top:40px !important}
+.chapter > .t2{grid-column:auto / span 2 !important}
+.chapter > .t3{grid-column:1 / -1 !important}
+.quote{padding:20px !important;gap:8px !important}
+.quote > span{font-size:56px !important}
+.quote > p:last-child{display:none}
+.cap{left:8px;right:8px;bottom:8px;padding:10px 12px}
+.discs{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:600px){
+.chapter{grid-template-columns:repeat(2,minmax(0,1fr))}
+.chapter > *{height:190px}
+.chapter > .ch{height:auto}
+.chapter > .t2:not(.w2){grid-column:auto / span 1 !important}
+.chapter > .t3,.chapter > .m2{grid-column:1 / -1 !important}
+.quote p{font-size:20px !important}
+.cap{padding:8px 10px;border-radius:10px}
+.cap-title{font-size:14px}
+.cap-by{display:none}
+.chips{flex-wrap:nowrap;overflow-x:auto;margin:0 -20px;padding:0 20px 6px;scrollbar-width:none}
+.chips .chip{flex:0 0 auto}
+.people{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -20px;padding:4px 20px 14px;gap:14px}
+.people > article{flex:0 0 80%;scroll-snap-align:start;transform:none !important}
+.m-only{display:block}
+.discs{gap:12px}
+.disc-card{min-height:0;border-radius:18px}
+.disc-card img,.disc-card > span:first-child:not(:only-child){height:110px !important}
+.disc-card > span:first-child:not(:only-child) > span{font-size:15px !important}
+.disc-card > span:last-child{padding:12px 14px !important;gap:6px !important}
+.disc-name{font-size:22px}
+.disc-card > span:last-child > span:last-child{font-size:12px !important}
+}
+.pillars{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.foot-grid{display:grid;grid-template-columns:1.5fr repeat(4,minmax(0,1fr));gap:40px 32px}
+@media (max-width:1100px){
+.pillars{grid-template-columns:repeat(2,minmax(0,1fr))}
+.foot-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.foot-brand{grid-column:1 / -1}
+.cta-tiles{display:none !important}
+}
+@media (max-width:900px){
+.cta-row{padding:0 !important;gap:0 !important}
+.cta-img{flex:1 1 100% !important;width:100% !important;height:220px;min-height:0 !important}
+.cta-text{flex:1 1 100% !important;padding:40px clamp(20px,4vw,56px) 48px !important}
+}
+@media (max-width:600px){
+.pillars{gap:12px}
+.pillar{min-height:0;padding:16px;gap:10px;border-radius:18px}
+.stage{height:90px}
+.stage .a-grow{max-height:60px}
+.pillar h3{font-size:24px !important}
+.pillar p{font-size:14px !important}
+.foot-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 20px}
+.cta-img{height:170px}
+}
+@media (prefers-reduced-motion:reduce){
+.a-spot,.a-orbit,.a-meetL,.a-meetR,.a-grow,.a-float{animation:none}
+.tile,.tile img,.btn,.cap,.disc-card{transition:none}
+.tile:hover,.btn:hover,.disc-card:hover,.tile:hover img{transform:none}
+}
+
+
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+[hidden]{display:none !important}
+section[id],div[id^="ch"]{scroll-margin-top:16px}
+.pv{position:fixed;inset:0;z-index:50;background:rgba(17,17,17,.84);display:flex;align-items:center;justify-content:center;padding:24px}
+.pv-box{width:100%;max-width:1000px;max-height:90vh;overflow:auto;background:#FDF2E0;color:#111111;border-radius:22px;display:flex;flex-wrap:wrap}
+#pv-img{flex:1 1 440px;width:0;min-height:440px;max-height:80vh;object-fit:cover;display:block}
+.pv-quote{flex:1 1 440px;min-height:440px;background:#111111;color:#FDF2E0;display:flex;align-items:center;padding:48px;box-sizing:border-box}
+.pv-quote p{margin:0;font:700 36px/1.15 'Fraunces',serif}
+.pv-body{flex:1 1 320px;padding:36px;display:flex;flex-direction:column;gap:14px}
+@media (max-width:600px){
+.pv{padding:12px;align-items:flex-end}
+#pv-img,.pv-quote{flex:1 1 100%;width:100%;min-height:0;height:46vh}
+.pv-quote p{font-size:26px}
+.pv-body{padding:22px}
+}
+
+</style>
+</head>
+<body>
+
+<div style="background: #FDF2E0; color: #111111; font-family: 'Inter', system-ui, sans-serif; min-height: 100%; overflow-x: hidden">
+
+<!-- 01 NAVIGATION -->
+<header style="position: relative; z-index: 20; max-width: 1360px; margin: 0 auto; padding: 20px clamp(20px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 24px">
+<a href="#top" aria-label="SANAA home" style="display: inline-flex"><img src="img/sanaa-logo.svg" alt="SANAA" style="height: 46px; width: auto; display: block"></a>
+<nav aria-label="Main" class="nav-links">
+<a href="#creatives" class="nav-link">Explore creatives</a>
+<a href="#wall" class="nav-link">Discover work</a>
+<a href="#sides" class="nav-link">Opportunities</a>
+<a href="#story" class="nav-link">About</a>
+</nav>
+<a href="#join" class="btn nav-cta" style="background: #D5F244; color: #111111; box-shadow: inset 0 0 0 1.5px #111111">Join SANAA<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a>
+<button type="button" class="btn menu-btn" id="menu-btn" aria-expanded="false" aria-controls="mobile-menu" style="background: #111111; color: #FDF2E0; padding: 0 18px"><svg aria-hidden="true" width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="#FDF2E0" stroke-width="2.2" stroke-linecap="round"><path d="M1 1h16M1 7h16M1 13h10"></path></svg>Menu</button>
+</header>
+
+<nav id="mobile-menu" aria-label="Mobile" hidden style="margin: 0 clamp(20px, 4vw, 56px) 16px; background: #111111; border-radius: 22px; padding: 20px 24px; display: flex; flex-direction: column; gap: 4px">
+<a href="#creatives" data-close-menu style="color: #FDF2E0; text-decoration: none; font: 700 24px/1 'Fraunces', serif; padding: 12px 0">Explore creatives</a>
+<a href="#wall" data-close-menu style="color: #FDF2E0; text-decoration: none; font: 700 24px/1 'Fraunces', serif; padding: 12px 0">Discover work</a>
+<a href="#sides" data-close-menu style="color: #FDF2E0; text-decoration: none; font: 700 24px/1 'Fraunces', serif; padding: 12px 0">Opportunities</a>
+<a href="#story" data-close-menu style="color: #FDF2E0; text-decoration: none; font: 700 24px/1 'Fraunces', serif; padding: 12px 0">About</a>
+<a href="#join" data-close-menu class="btn" style="background: #D5F244; color: #111111; margin-top: 10px; align-self: flex-start">Join SANAA</a>
+</nav>
+
+<!-- 02 HERO -->
+<section id="top" style="max-width: 1360px; margin: 0 auto; padding: 24px clamp(20px, 4vw, 56px) 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px">
+<div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+<h1 class="hero-h1" style="margin: 0; position: relative; font: 900 clamp(40px, 5.9vw, 92px)/0.9 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase">A continent of<br><span style="position: relative; display: inline-block"><span>Creativity.</span><svg aria-hidden="true" viewBox="0 0 300 30" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -0.16em; width: 104%; height: 0.26em; overflow: visible"><path fill="#FF6A13" d="M4 22 C70 6 180.67 -6.1 296.67 1.9 C299.67 2.9 299 13.11 295 13 C234.41 11.27 171.11 10.27 116.34 13.95 C76.21 16.66 42.68 22.92 8 28 C3 29 1 24 4 22 Z"></path></svg></span><br>An infinite<br>canvas.<svg aria-hidden="true" width="84" height="70" viewBox="0 0 80 64" fill="none" stroke="#111111" stroke-width="6" stroke-linecap="round" style="position: absolute; right: -3px; top: 60px"><path d="M10 8l6 22M36 2l-2 26M66 14L46 34"></path></svg></h1>
+<p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.5; color: #2B2925">A home for African creatives to showcase their work, discover opportunities and connect with people who value their craft.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px">
+<a href="#creatives" class="btn" style="background: #D5F244; color: #111111; min-height: 56px; padding: 0 28px; font-size: 17px; box-shadow: inset 0 0 0 1.5px #111111">Explore creatives<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#111111" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a>
+<a href="#join" class="btn" style="background: transparent; color: #111111; box-shadow: inset 0 0 0 1.5px #111111; min-height: 56px; padding: 0 28px; font-size: 17px">Showcase your work</a>
+</div>
+<a href="#wall" style="display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; padding: 8px 0; align-self: flex-start"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(2, 9px); gap: 2px"><span style="height: 9px; border-radius: 2px; background: #FF6A13"></span><span style="height: 9px; border-radius: 2px; background: #D5F244"></span><span style="height: 9px; border-radius: 2px; background: #A982F5"></span><span style="height: 9px; border-radius: 50%; background: #111111"></span></span>Read the Creative Wall ↓</a>
+</div>
+<div style="flex: 1 1 460px; min-width: 0; position: relative; padding: 24px 0 40px">
+<img src="img/hero.jpg" alt="Collage of African creatives: a woman in a patterned headwrap, a man in a green blazer, a photographer and modern architecture, with bold colour shapes" style="width: 100%; height: auto; display: block">
+<img class="a-float" src="img/n06.jpg" alt="Fashion portrait: a woman in sunglasses against a sunflower print" style="--r: -7deg; position: absolute; left: -2%; bottom: 0; width: 24%; aspect-ratio: 0.72; object-fit: cover; border-radius: 16px; box-shadow: 0 0 0 6px #FDF2E0">
+<img class="a-float" src="img/n03.jpg" alt="Fashion portrait: a woman in an emerald headwrap and satin gloves" style="--r: 6deg; position: absolute; right: -1%; top: 0; width: 20%; aspect-ratio: 0.8; object-fit: cover; border-radius: 16px; box-shadow: 0 0 0 6px #FDF2E0; animation-delay: -3s">
+<span aria-hidden="true" style="position: absolute; right: 18%; bottom: 4px; width: 46px; height: 46px; border-radius: 12px; background: #A982F5; transform: rotate(10deg)"></span>
+<span aria-hidden="true" style="position: absolute; right: 12%; bottom: 30px; width: 30px; height: 30px; border-radius: 8px; background: #D5F244; transform: rotate(-8deg)"></span>
+</div>
+</section>
+
+<!-- 03 THE CREATIVE WALL -->
+
+
+<!-- 04 MEET THE CREATIVES -->
+<section id="wall" aria-labelledby="wall-h" style="border-top: 1px solid #E5D3B5">
+<div style="max-width: 1360px; margin: 0 auto; padding: 88px clamp(20px, 4vw, 56px) 96px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px">
+<div style="display: flex; flex-direction: column; gap: 14px; max-width: 760px">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase">The Creative Wall</p>
+<h2 id="wall-h" style="margin: 0; font: 900 clamp(48px, 6vw, 88px)/0.9 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase">A story in four chapters.</h2>
+<p style="margin: 0; font-size: 18px; line-height: 1.5; color: #2B2925; max-width: 620px">From roots, to the runway, to the remix, to tomorrow. Hover any work to meet its maker, then open it to see the full project.</p>
+</div>
+<p style="margin: 0; font: 400 clamp(26px, 2.6vw, 36px)/1.05 'Permanent Marker', cursive; transform: rotate(-3deg)">Different works of art.<br>One wall.</p>
+</div>
+<nav aria-label="Wall chapters" style="display: flex; flex-wrap: wrap; gap: 8px 22px; font-weight: 700; font-size: 15px">
+<a href="#ch1" style="padding: 10px 0">01 Roots, reimagined</a><span aria-hidden="true" style="padding: 10px 0; color: #A39A8A">→</span>
+<a href="#ch2" style="padding: 10px 0">02 Bold on the body</a><span aria-hidden="true" style="padding: 10px 0; color: #A39A8A">→</span>
+<a href="#ch3" style="padding: 10px 0">03 Remix the archive</a><span aria-hidden="true" style="padding: 10px 0; color: #A39A8A">→</span>
+<a href="#ch4" style="padding: 10px 0">04 Tomorrow’s canvas</a>
+</nav>
+<div role="group" aria-label="Filter the wall by discipline" class="chips">
+<button type="button" class="chip is-on" data-filter="all" aria-pressed="true">All work</button>
+<button type="button" class="chip" data-filter="graphic" aria-pressed="false">Graphic design</button>
+<button type="button" class="chip" data-filter="photo" aria-pressed="false">Photography</button>
+<button type="button" class="chip" data-filter="illus" aria-pressed="false">Illustration</button>
+<button type="button" class="chip" data-filter="fashion" aria-pressed="false">Fashion</button>
+<button type="button" class="chip" data-filter="film" aria-pressed="false">Film &amp; animation</button>
+<button type="button" class="chip" data-filter="visual" aria-pressed="false">Visual arts</button>
+<button type="button" class="chip" data-filter="writing" aria-pressed="false">Writing</button>
+<button type="button" class="chip" data-filter="digital" aria-pressed="false">3D &amp; digital art</button>
+</div>
+<p id="wall-status" aria-live="polite" style="margin: -8px 0 12px; font-size: 15px; color: #4A463F">Showing all 22 works across 8 disciplines</p>
+
+<!-- Chapter 01 -->
+<div id="ch1" class="chapter">
+<div class="ch w2" style="grid-column: 1 / 5; grid-row: 1 / 4"><span class="ch-num">Chapter 01</span><h3 class="ch-title">Roots, reimagined.</h3><p class="ch-text">It starts with heritage: pattern, profile and memory, redrawn by a new generation.</p></div>
+<button type="button" class="tile tilt-l" data-disc="illus" data-work="a1" aria-label="View project: Daughter of the Sun by Adaeze Nwosu, illustration, Lagos" style="grid-column: 1 / 6; grid-row: 4 / 14"><img loading="lazy" src="img/n04.jpg" alt=""><span class="cap"><span class="cap-disc">Illustration</span><span class="cap-title">Daughter of the Sun</span><span class="cap-by">Adaeze Nwosu · Lagos</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile" data-disc="illus" data-work="a2" aria-label="View project: Rhythm in Orange by Kojo Asante, illustration, Accra" style="grid-column: 6 / 10; grid-row: 1 / 9"><img loading="lazy" src="img/n02.jpg" alt=""><span class="cap"><span class="cap-disc">Illustration</span><span class="cap-title">Rhythm in Orange</span><span class="cap-by">Kojo Asante · Accra</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile w2" data-disc="graphic" data-work="a3" aria-label="View project: Geometry of Grace by Lerato Mokoena, graphic design, Johannesburg" style="grid-column: 6 / 10; grid-row: 9 / 14"><img loading="lazy" src="img/n11.jpg" alt=""><span class="cap"><span class="cap-disc">Graphic design</span><span class="cap-title">Geometry of Grace</span><span class="cap-by">Lerato Mokoena · Johannesburg</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile tilt-r" data-disc="visual" data-work="a4" aria-label="View project: Sisters at Dusk by Halima Yusuf, visual arts, Arusha" style="grid-column: 10 / 13; grid-row: 1 / 7"><img loading="lazy" src="img/n16.jpg" alt=""><span class="cap"><span class="cap-disc">Visual arts</span><span class="cap-title">Sisters at Dusk</span><span class="cap-by">Halima Yusuf · Arusha</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile" data-disc="illus" data-work="a5" aria-label="View project: Night Cat by Tunde Adeyemi, illustration, Lagos" style="grid-column: 10 / 13; grid-row: 7 / 14"><img loading="lazy" src="img/u-3.jpg" alt=""><span class="cap"><span class="cap-disc">Illustration</span><span class="cap-title">Night Cat</span><span class="cap-by">Tunde Adeyemi · Lagos</span><span class="cap-link">View project ↗</span></span></button>
+</div>
+
+<!-- Chapter 02 -->
+<div id="ch2" class="chapter" style="margin-top: 56px">
+<button type="button" class="tile w2" data-disc="photo" data-work="b1" aria-label="View project: Red Wall Afternoon by Amara Diallo, photography, Dakar" style="grid-column: 1 / 7; grid-row: 1 / 9"><img loading="lazy" src="img/n15.jpg" alt=""><span class="cap"><span class="cap-disc">Photography</span><span class="cap-title">Red Wall Afternoon</span><span class="cap-by">Amara Diallo · Dakar</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile tilt-r" data-disc="fashion" data-work="b2" aria-label="View project: Emerald Crown by Nyokabi Wairimu, fashion, Nairobi" style="grid-column: 7 / 10; grid-row: 1 / 8"><img loading="lazy" src="img/n03.jpg" alt=""><span class="cap"><span class="cap-disc">Fashion</span><span class="cap-title">Emerald Crown</span><span class="cap-by">Nyokabi Wairimu · Nairobi</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile" data-disc="photo" data-work="b3" aria-label="View project: Sunflower Static by Bisi Alade, photography, Lagos" style="grid-column: 10 / 13; grid-row: 1 / 10"><img loading="lazy" src="img/n06.jpg" alt=""><span class="cap"><span class="cap-disc">Photography</span><span class="cap-title">Sunflower Static</span><span class="cap-by">Bisi Alade · Lagos</span><span class="cap-link">View project ↗</span></span></button>
+<div class="ch w2" style="grid-column: 7 / 10; grid-row: 8 / 12; padding-left: 8px"><span class="ch-num">Chapter 02</span><h3 class="ch-title">Bold on the body.</h3><p class="ch-text">Then the story walks into the light. Fabric, hair and attitude become the canvas.</p></div>
+<button type="button" class="tile tilt-l" data-disc="photo" data-work="b4" aria-label="View project: Golden Harvest by Kwabena Osei, photography, Kumasi" style="grid-column: 1 / 4; grid-row: 9 / 17"><img loading="lazy" src="img/n01.jpg" alt=""><span class="cap"><span class="cap-disc">Photography</span><span class="cap-title">Golden Harvest</span><span class="cap-by">Kwabena Osei · Kumasi</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile" data-disc="fashion" data-work="b5" aria-label="View project: Bloom by Fatoumata Keita, fashion, Bamako" style="grid-column: 4 / 7; grid-row: 9 / 17"><img loading="lazy" src="img/n05.jpg" alt="" style="object-position: 30% 50%"><span class="cap"><span class="cap-disc">Fashion</span><span class="cap-title">Bloom</span><span class="cap-by">Fatoumata Keita · Bamako</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile tilt-r m2" data-disc="photo" data-work="b6" aria-label="View project: Sun Seeker by Amina Okafor, photography, Nairobi" style="grid-column: 7 / 10; grid-row: 12 / 17"><img loading="lazy" src="img/u-1.jpg" alt=""><span class="cap"><span class="cap-disc">Photography</span><span class="cap-title">Sun Seeker</span><span class="cap-by">Amina Okafor · Nairobi</span><span class="cap-link">View project ↗</span></span></button>
+<div class="w2 quote" style="grid-column: 10 / 13; grid-row: 10 / 17; border-radius: 18px; background: #D5F244; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; gap: 16px">
+<span aria-hidden="true" style="font: 700 88px/0.6 'Fraunces', serif">“</span>
+<p style="margin: 0; font: 700 clamp(24px, 2.2vw, 32px)/1.1 'Fraunces', serif; letter-spacing: -0.02em">Style is a story told without words.</p>
+<p style="margin: 0; font-size: 14px; font-weight: 600">Chapter 02 · Fashion &amp; photography</p>
+</div>
+</div>
+
+<!-- Chapter 03 -->
+<div id="ch3" class="chapter" style="margin-top: 56px">
+<div class="ch w2" style="grid-column: 1 / 4; grid-row: 1 / 5"><span class="ch-num">Chapter 03</span><h3 class="ch-title">Remix the archive.</h3><p class="ch-text">Next, artists cut, paste and collide eras into something new.</p></div>
+<button type="button" class="tile w2 t3 tilt-r" data-disc="visual" data-work="c1" aria-label="View project: Carnival of Selves by Sipho Ndlovu, visual arts, Durban" style="grid-column: 4 / 13; grid-row: 1 / 10"><img loading="lazy" src="img/n08.jpg" alt=""><span class="cap" style="right: auto; max-width: 320px"><span class="cap-disc">Visual arts · Collage</span><span class="cap-title">Carnival of Selves</span><span class="cap-by">Sipho Ndlovu · Durban</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile tilt-l" data-disc="graphic" data-work="c2" aria-label="View project: Djino 01 by Moussa Traoré, graphic design, Abidjan" style="grid-column: 1 / 4; grid-row: 5 / 13"><img loading="lazy" src="img/n07.jpg" alt=""><span class="cap"><span class="cap-disc">Graphic design</span><span class="cap-title">Djino ’01</span><span class="cap-by">Moussa Traoré · Abidjan</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile w2" data-disc="visual" data-work="c3" aria-label="View project: Sunday Archive by Yaa Mensah, visual arts, Accra" style="grid-column: 4 / 9; grid-row: 10 / 17"><img loading="lazy" src="img/n10.jpg" alt=""><span class="cap"><span class="cap-disc">Visual arts · Collage</span><span class="cap-title">Sunday Archive</span><span class="cap-by">Yaa Mensah · Accra</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile tilt-r t2" data-disc="film" data-work="c4" aria-label="View project: Dakar Express by Cheikh Ndiaye, film and animation, Dakar" style="grid-column: 9 / 13; grid-row: 10 / 17"><img loading="lazy" src="img/n09.jpg" alt=""><span class="cap"><span class="cap-disc">Film &amp; animation</span><span class="cap-title">Dakar Express</span><span class="cap-by">Cheikh Ndiaye · Dakar</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile m2" data-disc="visual" data-work="c5" aria-label="View project: Lines of Memory by Ayo Bello, visual arts, Abuja" style="grid-column: 1 / 4; grid-row: 13 / 17"><img loading="lazy" src="img/u-4.jpg" alt=""><span class="cap"><span class="cap-disc">Visual arts</span><span class="cap-title">Lines of Memory</span><span class="cap-by">Ayo Bello · Abuja</span><span class="cap-link">View project ↗</span></span></button>
+</div>
+
+<!-- Chapter 04 -->
+<div id="ch4" class="chapter" style="margin-top: 56px">
+<button type="button" class="tile tilt-l t2" data-disc="digital" data-work="d1" aria-label="View project: Inner Orbit by Ruth Achieng, 3D and digital art, Kisumu" style="grid-column: 1 / 5; grid-row: 1 / 9"><img loading="lazy" src="img/n14.jpg" alt=""><span class="cap"><span class="cap-disc">3D &amp; digital art</span><span class="cap-title">Inner Orbit</span><span class="cap-by">Ruth Achieng · Kisumu</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile" data-disc="graphic" data-work="d2" aria-label="View project: I Create Symphonies by Omar Haddad, graphic design, Cairo" style="grid-column: 5 / 8; grid-row: 1 / 8"><img loading="lazy" src="img/n13.jpg" alt=""><span class="cap"><span class="cap-disc">Graphic design · Type</span><span class="cap-title">I Create Symphonies</span><span class="cap-by">Omar Haddad · Cairo</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile w2 tilt-r" data-disc="visual" data-work="d3" aria-label="View project: Brothers by the Sea by Jomo Kariuki, visual arts, Mombasa" style="grid-column: 8 / 13; grid-row: 1 / 6"><img loading="lazy" src="img/n12.jpg" alt=""><span class="cap"><span class="cap-disc">Visual arts · Painting</span><span class="cap-title">Brothers by the Sea</span><span class="cap-by">Jomo Kariuki · Mombasa</span><span class="cap-link">View project ↗</span></span></button>
+<button type="button" class="tile" data-disc="photo" data-work="d4" aria-label="View project: Concrete Hymns by Kwesi Boateng, photography, Kumasi" style="grid-column: 8 / 10; grid-row: 6 / 11"><img loading="lazy" src="img/u-2.jpg" alt=""><span class="cap"><span class="cap-disc">Photography</span><span class="cap-title">Concrete Hymns</span><span class="cap-by">Kwesi Boateng</span></span></button>
+<button type="button" class="tile tilt-l" data-disc="film" data-work="d5" aria-label="View project: Looking Up by Wanjiru Kamau, film and animation, Nairobi" style="grid-column: 10 / 13; grid-row: 6 / 11"><img loading="lazy" src="img/panel-creative.jpg" alt=""><span class="cap"><span class="cap-disc">Film &amp; animation</span><span class="cap-title">Looking Up</span><span class="cap-by">Wanjiru Kamau · Nairobi</span><span class="cap-link">View project ↗</span></span></button>
+<div class="ch w2" style="grid-column: 5 / 8; grid-row: 8 / 12; padding-left: 8px"><span class="ch-num">Chapter 04</span><h3 class="ch-title">Tomorrow’s canvas.</h3><p class="ch-text">And it keeps moving: digital worlds, experimental type, words and paint that look forward.</p></div>
+<button type="button" class="tile w2" data-disc="writing" data-work="w1" aria-label="View project: Letters Home by Wambui Njeri, writing, Nairobi" style="grid-column: 8 / 13; grid-row: 11 / 14; background: #111111; color: #FDF2E0; cursor: zoom-in">
+<span style="position: absolute; inset: 0; padding: 22px 26px; display: flex; flex-direction: column; justify-content: center; gap: 8px"><span style="font: 700 12px/1 'Inter', sans-serif; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">Writing · Letters Home</span><span style="font: 700 clamp(20px, 1.8vw, 26px)/1.15 'Fraunces', serif">“Every city I leave stays in my mouth like a song.”</span><span style="font-size: 13px; color: #E8DFCF">Wambui Njeri · Nairobi</span></span>
+</button>
+<a href="#join" class="w2 t3" style="grid-column: 1 / 5; grid-row: 9 / 14; border-radius: 18px; border: 2px dashed #111111; background: #FFF8EC; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 12px; padding: 28px; text-decoration: none; color: #111111">
+<span style="font: 700 clamp(26px, 2.4vw, 34px)/1.05 'Fraunces', serif; letter-spacing: -0.02em">The next chapter is yours.</span>
+<span style="font-size: 16px; line-height: 1.45; color: #2B2925">Add your work to the wall.</span>
+<span style="font-size: 15px; font-weight: 700">Showcase your work →</span>
+</a>
+</div>
+</div>
+</section><section id="creatives" aria-labelledby="minds-h" style="background: #F6E3C4">
+<div style="max-width: 1360px; margin: 0 auto; padding: 88px clamp(20px, 4vw, 56px); display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
+<div style="display: flex; flex-direction: column; gap: 12px; max-width: 640px">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase">Meet the creatives</p>
+<h2 id="minds-h" style="margin: 0; font: 700 clamp(40px, 4.6vw, 64px)/1 'Fraunces', serif; letter-spacing: -0.035em">The minds behind the magic.</h2>
+</div>
+<a href="#creatives" class="btn" style="background: #111111; color: #FDF2E0">Explore all creatives<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FDF2E0" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a>
+</div>
+<p class="m-only" style="margin: -16px 0 0; font-size: 14px; font-weight: 600; color: #4A463F">Swipe to meet more creatives →</p>
+<div class="people">
+<article style="background: #FFFFFF; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transform: rotate(-1deg); height: 455px">
+<img loading="lazy" src="img/p-amina.jpg" alt="Portrait of Amina Okafor" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+<div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<span style="align-self: flex-start; background: #A982F5; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700">Photography</span>
+<h3 style="margin: 0; font: 700 22px/1.15 'Fraunces', serif">Amina Tandy</h3>
+<p style="margin: 0; font-size: 14px; color: #4A463F">Nairobi, Kenya</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B2925">Portraits and street stories shot in natural light.</p>
+<a href="#creatives" style="margin-top: auto; font-size: 15px; font-weight: 700; padding: 10px 0 0">View profile →</a>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transform: rotate(0.8deg)">
+<img loading="lazy" src="img/p-tunde.jpg" alt="Portrait of Tunde Adeyemi" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+<div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<span style="align-self: flex-start; background: #FF6A13; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700">Illustration</span>
+<h3 style="margin: 0; font: 700 22px/1.15 'Fraunces', serif">Tunde Adeyemi</h3>
+<p style="margin: 0; font-size: 14px; color: #4A463F">Lagos, Nigeria</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B2925">Bold characters for books, brands and album art.</p>
+<a href="#creatives" style="margin-top: auto; font-size: 15px; font-weight: 700; padding: 10px 0 0">View profile →</a>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transform: rotate(-0.6deg)">
+<img loading="lazy" src="img/p-zanele.jpg" alt="Portrait of Zanele Dlamini" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+<div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<span style="align-self: flex-start; background: #FFD54A; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700">Fashion</span>
+<h3 style="margin: 0; font: 700 22px/1.15 'Fraunces', serif">Zanele Dlamini</h3>
+<p style="margin: 0; font-size: 14px; color: #4A463F">Cape Town, South Africa</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B2925">Headwear and textiles rooted in colour and craft.</p>
+<a href="#creatives" style="margin-top: auto; font-size: 15px; font-weight: 700; padding: 10px 0 0">View profile →</a>
+</div>
+</article>
+<article style="background: #FFFFFF; border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; transform: rotate(1deg)">
+<img loading="lazy" src="img/p-kofi.jpg" alt="Portrait of Kofi Mensah" style="width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block">
+<div style="padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 8px; flex: 1">
+<span style="align-self: flex-start; background: #D5F244; padding: 6px 10px; border-radius: 999px; font-size: 12px; font-weight: 700">3D &amp; digital art</span>
+<h3 style="margin: 0; font: 700 22px/1.15 'Fraunces', serif">Kofi Mensah</h3>
+<p style="margin: 0; font-size: 14px; color: #4A463F">Accra, Ghana</p>
+<p style="margin: 0; font-size: 15px; line-height: 1.5; color: #2B2925">Surreal 3D worlds for music videos and motion.</p>
+<a href="#creatives" style="margin-top: auto; font-size: 15px; font-weight: 700; padding: 10px 0 0">View profile →</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+
+<!-- 05 EXPLORE CREATIVE DISCIPLINES -->
+<section id="disciplines" aria-labelledby="disc-h" style="max-width: 1360px; margin: 0 auto; padding: 96px clamp(20px, 4vw, 56px); display: flex; flex-direction: column; gap: 36px">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px">
+<h2 id="disc-h" style="margin: 0; max-width: 760px; font: 900 clamp(48px, 6vw, 88px)/0.9 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase">Find your kind of creative.</h2>
+<p style="margin: 0; max-width: 380px; font-size: 17px; line-height: 1.5; color: #2B2925">Pick a discipline to jump straight to that work on the wall.</p>
+</div>
+<div class="discs">
+<a href="#wall" class="disc-card" data-filter="graphic" style="background: #D5F244; color: #111111"><img loading="lazy" src="img/n13.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Graphic<br>design</span><span style="font-size: 14px; font-weight: 600">3 works on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="photo" style="background: #A982F5; color: #111111; transform: rotate(1deg)"><img loading="lazy" src="img/n15.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Photo-<br>graphy</span><span style="font-size: 14px; font-weight: 600">5 works on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="illus" style="background: #FF6A13; color: #111111"><img loading="lazy" src="img/n02.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Illus-<br>tration</span><span style="font-size: 14px; font-weight: 600">3 works on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="fashion" style="background: #FFD54A; color: #111111; transform: rotate(-1deg)"><img loading="lazy" src="img/n05.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Fashion</span><span style="font-size: 14px; font-weight: 600">2 works on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="film" style="background: #111111; color: #FDF2E0; transform: rotate(-0.8deg)"><img loading="lazy" src="img/n09.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Film &amp;<br>animation</span><span style="font-size: 14px; font-weight: 600">2 works on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="visual" style="background: #FFFFFF; color: #111111; box-shadow: inset 0 0 0 1.5px #111111"><img loading="lazy" src="img/n12.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Visual<br>arts</span><span style="font-size: 14px; font-weight: 600">5 works on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="writing" style="background: #FF6A13; color: #111111; transform: rotate(0.8deg)"><span style="height: 200px; display: flex; align-items: center; padding: 0 22px; background: #111111; color: #FDF2E0"><span style="font: 700 26px/1.15 'Fraunces', serif">“Every city I leave stays in my mouth like a song.”</span></span><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">Writing</span><span style="font-size: 14px; font-weight: 600">1 work on the wall →</span></span></a>
+<a href="#wall" class="disc-card" data-filter="digital" style="background: #6D3FE0; color: #FDF2E0"><img loading="lazy" src="img/n14.jpg" alt=""><span style="padding: 20px; display: flex; flex-direction: column; gap: 8px"><span class="disc-name">3D &amp;<br>digital art</span><span style="font-size: 14px; font-weight: 600">1 work on the wall →</span></span></a>
+</div>
+</section>
+
+<!-- 06 WHAT YOU CAN DO ON SANAA -->
+<section id="pillars" aria-labelledby="pil-h" style="background: #111111; color: #FDF2E0">
+<div style="max-width: 1360px; margin: 0 auto; padding: 96px clamp(20px, 4vw, 56px); display: flex; flex-direction: column; gap: 40px">
+<h2 id="pil-h" style="margin: 0; max-width: 820px; font: 700 clamp(40px, 4.6vw, 64px)/1 'Fraunces', serif; letter-spacing: -0.035em">What you can do on SANAA.</h2>
+<div class="pillars">
+<div class="pillar" style="background: #FF6A13; color: #111111">
+<div class="stage" aria-hidden="true"><span class="a-spot" style="position: absolute; left: 50%; top: 50%; width: 110px; height: 110px; border-radius: 50%; background: #FFD54A"></span><span style="position: absolute; left: 50%; top: 50%; width: 64px; height: 80px; transform: translate(-50%, -50%); border: 5px solid #111111; border-radius: 6px; background: #FDF2E0"></span><span style="position: absolute; left: 50%; top: 50%; width: 28px; height: 28px; transform: translate(-50%, -60%); border-radius: 50%; background: #A982F5"></span></div>
+<h3 style="margin: 0; font: 900 36px/1 'Archivo', sans-serif; font-stretch: 82%; text-transform: uppercase">Showcase</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 500">Give your work visibility.</p>
+</div>
+<div class="pillar" style="background: #D5F244; color: #111111">
+<div class="stage" aria-hidden="true"><span style="position: absolute; left: 22%; top: 26%; width: 34px; height: 34px; border-radius: 8px; background: #FF6A13; transform: rotate(-8deg)"></span><span style="position: absolute; right: 22%; top: 30%; width: 30px; height: 30px; border-radius: 8px; background: #A982F5; transform: rotate(6deg)"></span><span style="position: absolute; left: 44%; bottom: 18%; width: 30px; height: 30px; border-radius: 50%; background: #111111"></span><span class="a-orbit" style="position: absolute; left: 50%; top: 50%"><svg width="56" height="56" viewBox="0 0 32 32" fill="none" stroke="#111111" stroke-width="3" stroke-linecap="round"><circle cx="14" cy="14" r="9" fill="rgba(253,242,224,.7)"></circle><path d="M21 21l8 8"></path></svg></span></div>
+<h3 style="margin: 0; font: 900 36px/1 'Archivo', sans-serif; font-stretch: 82%; text-transform: uppercase">Discover</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 500">Find inspiring creatives and projects.</p>
+</div>
+<div class="pillar" style="background: #A982F5; color: #111111">
+<div class="stage" aria-hidden="true"><span style="position: absolute; left: 25%; right: 25%; top: 50%; height: 4px; background: #111111; border-radius: 2px"></span><span class="a-meetL" style="position: absolute; left: 18%; top: calc(50% - 30px); width: 60px; height: 60px; border-radius: 50%; background: #FF6A13"></span><span class="a-meetR" style="position: absolute; right: 18%; top: calc(50% - 30px); width: 60px; height: 60px; border-radius: 14px; background: #D5F244"></span></div>
+<h3 style="margin: 0; font: 900 36px/1 'Archivo', sans-serif; font-stretch: 82%; text-transform: uppercase">Connect</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 500">Build meaningful creative relationships.</p>
+</div>
+<div class="pillar" style="background: #FFD54A; color: #111111">
+<div class="stage" aria-hidden="true" style="display: flex; align-items: flex-end; justify-content: center; gap: 12px; padding-bottom: 18px; box-sizing: border-box"><span class="a-grow" style="width: 30px; height: 50px; border-radius: 8px 8px 4px 4px; background: #A982F5; animation-delay: 0s"></span><span class="a-grow" style="width: 30px; height: 80px; border-radius: 8px 8px 4px 4px; background: #FF6A13; animation-delay: -0.6s"></span><span class="a-grow" style="width: 30px; height: 110px; border-radius: 8px 8px 4px 4px; background: #111111; animation-delay: -1.2s"></span></div>
+<h3 style="margin: 0; font: 900 36px/1 'Archivo', sans-serif; font-stretch: 82%; text-transform: uppercase">Grow</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.45; font-weight: 500">Find opportunities to develop your craft.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- 07 TWO SIDES -->
+<section id="sides" aria-labelledby="sides-h">
+<h2 id="sides-h" style="margin: 0; max-width: 1360px; margin: 0 auto; padding: 88px clamp(20px, 4vw, 56px) 32px; font: 700 clamp(36px, 4vw, 56px)/1 'Fraunces', serif; letter-spacing: -0.035em">Two sides of the SANAA community.</h2>
+<div style="display: flex; flex-wrap: wrap">
+<div style="flex: 1 1 560px; min-width: 0; background: #A982F5; display: flex; flex-wrap: wrap; align-items: stretch; overflow: hidden">
+<div style="flex: 1 1 280px; padding: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<h3 style="margin: 0; font: 700 clamp(34px, 3.4vw, 48px)/1 'Fraunces', serif; letter-spacing: -0.035em">For creatives</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; max-width: 360px">Showcase your portfolio, build your presence, connect with collaborators and discover opportunities.</p>
+<div><a href="#join" class="btn" style="background: #111111; color: #FDF2E0">Join as a creative<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FDF2E0" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a></div>
+</div>
+<img loading="lazy" src="img/panel-creative.jpg" alt="A creative in an orange shirt and glasses looking upward" style="flex: 1 1 240px; min-height: 300px; width: 0; object-fit: cover; display: block">
+</div>
+<div style="flex: 1 1 560px; min-width: 0; background: #D5F244; display: flex; flex-wrap: wrap; align-items: stretch; overflow: hidden">
+<div style="flex: 1 1 280px; padding: clamp(32px, 4vw, 56px); display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<h3 style="margin: 0; font: 700 clamp(34px, 3.4vw, 48px)/1 'Fraunces', serif; letter-spacing: -0.035em">For businesses and clients</h3>
+<p style="margin: 0; font-size: 17px; line-height: 1.5; max-width: 360px">Discover creative talent, explore portfolios and connect with people who can bring ideas to life.</p>
+<div><a href="#wall" class="btn" style="background: #111111; color: #FDF2E0">Find creative talent<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FDF2E0" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a></div>
+</div>
+<img loading="lazy" src="img/panel-business.jpg" alt="A smiling businessman in glasses" style="flex: 1 1 240px; min-height: 300px; width: 0; object-fit: cover; display: block">
+</div>
+</div>
+</section>
+
+<!-- 08 THE SANAA STORY -->
+<section id="story" aria-labelledby="story-h" style="max-width: 1360px; margin: 0 auto; padding: 104px clamp(20px, 4vw, 56px); display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+<div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 22px">
+<p style="margin: 0; font-size: 14px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase">The SANAA story</p>
+<h2 id="story-h" style="margin: 0; font: 900 clamp(44px, 5.4vw, 80px)/0.92 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase">Africa has the talent. <span style="position: relative; display: inline-block">Let’s make it<svg aria-hidden="true" viewBox="0 0 300 30" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -0.14em; width: 104%; height: 0.24em"><path fill="#FF6A13" d="M4 22C70 6 180 0 296 8c3 1 3 5-1 5C190 10 90 16 8 28c-5 1-7-4-4-6z"></path></svg></span> impossible to overlook.</h2>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2B2925; max-width: 640px">Across the continent, illustrators, photographers, designers, filmmakers and writers are making extraordinary work. Too often it disappears into a social feed, missed by the clients, brands and collaborators who need it most.</p>
+<p style="margin: 0; font-size: 19px; line-height: 1.6; color: #2B2925; max-width: 640px">The problem was never talent. It is the gap between talent, visibility and opportunity. <strong>Sanaa</strong>, Swahili for art, exists to close it.</p>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-top: 8px">
+<div style="border-top: 3px solid #111111; padding-top: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font: 700 20px/1.1 'Fraunces', serif">Seen</span><span style="font-size: 15px; line-height: 1.45; color: #2B2925">Work shown with the care of a gallery, not lost in a feed.</span></div>
+<div style="border-top: 3px solid #111111; padding-top: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font: 700 20px/1.1 'Fraunces', serif">Found</span><span style="font-size: 15px; line-height: 1.45; color: #2B2925">Talent as easy to find as a search, by discipline and city.</span></div>
+<div style="border-top: 3px solid #111111; padding-top: 14px; display: flex; flex-direction: column; gap: 6px"><span style="font: 700 20px/1.1 'Fraunces', serif">Hired</span><span style="font-size: 15px; line-height: 1.45; color: #2B2925">A direct line to people ready to commission the work.</span></div>
+</div>
+</div>
+<div style="flex: 1 1 380px; max-width: 680px; min-width: 0; position: relative; padding: 0 0 30px 30px">
+<img loading="lazy" src="img/n10.jpg" alt="Collage of young Africans in black and white over bright blocks of colour" style="width: 100%; aspect-ratio: 1.15; object-fit: cover; display: block; border-radius: 22px; transform: rotate(1.5deg)">
+<img loading="lazy" src="img/n04.jpg" alt="" style="position: absolute; left: 0; bottom: 0; width: 38%; aspect-ratio: 1; object-fit: cover; border-radius: 16px; box-shadow: 0 0 0 6px #FDF2E0; transform: rotate(-5deg)">
+</div>
+</section>
+
+<!-- 09 FINAL CALL TO ACTION -->
+<section id="join" aria-labelledby="cta-h" style="background: #FFD54A; overflow: hidden">
+<div class="cta-row" style="display: flex; flex-wrap: wrap; align-items: center; gap: 24px 48px; padding: 0 clamp(20px, 4vw, 56px) 0 0">
+<img loading="lazy" class="cta-img" src="img/baobab.jpg" alt="" style="flex: 0 1 320px; align-self: stretch; min-height: 280px; width: 0; min-width: 200px; object-fit: cover; display: block">
+<div class="cta-text" style="flex: 1 1 520px; padding: 56px 0; display: flex; flex-direction: column; gap: 20px">
+<h2 id="cta-h" style="margin: 0; font: 400 clamp(42px, 5vw, 76px)/0.98 'Permanent Marker', cursive; text-transform: uppercase; transform: rotate(-2.5deg); transform-origin: left">Your creativity deserves a bigger canvas.</h2>
+<p style="margin: 0; max-width: 560px; font-size: 19px; line-height: 1.5">Bring your ideas, your work and your perspective. Find your place in the SANAA creative community.</p>
+<div><a href="#join" class="btn" style="background: #111111; color: #FDF2E0; min-height: 60px; padding: 0 32px; font-size: 18px">Become part of SANAA<svg aria-hidden="true" width="16" height="16" viewBox="0 0 14 14" fill="none" stroke="#FDF2E0" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a></div>
+</div>
+<div aria-hidden="true" class="cta-tiles" style="flex: 0 0 auto; display: grid; grid-template-columns: repeat(2, 64px); gap: 10px; padding: 24px 0">
+<span style="height: 64px; border-radius: 14px; background: #FF6A13; transform: rotate(-8deg)"></span><span style="height: 64px; border-radius: 14px; background: #D5F244; transform: rotate(6deg)"></span><span style="height: 64px; border-radius: 14px; background: #A982F5; transform: rotate(5deg)"></span><span style="height: 64px; border-radius: 50%; background: #111111"></span>
+</div>
+</div>
+</section>
+
+<!-- 10 FOOTER -->
+<footer style="background: #111111; color: #FDF2E0">
+<div style="max-width: 1360px; margin: 0 auto; padding: 72px clamp(20px, 4vw, 56px) 28px; display: flex; flex-direction: column; gap: 48px">
+<div class="foot-grid">
+<div class="foot-brand" style="display: flex; flex-direction: column; gap: 16px">
+<img loading="lazy" src="img/sanaa-logo-reversed.svg" alt="SANAA" style="width: 190px; height: auto; display: block">
+<p style="margin: 0; font: 700 22px/1.2 'Fraunces', serif">African creativity. Global stage.</p>
+<div style="display: flex; gap: 4px; margin-left: -10px">
+<a href="#top" class="social" aria-label="SANAA on Instagram"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#FDF2E0" stroke-width="1.8"><rect x="2" y="2" width="16" height="16" rx="4.5"></rect><circle cx="10" cy="10" r="3.6"></circle><circle cx="14.6" cy="5.4" r="0.6" fill="#FDF2E0"></circle></svg></a>
+<a href="#top" class="social" aria-label="SANAA on X"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#FDF2E0" stroke-width="1.9" stroke-linecap="round"><path d="M2 2l14 14M16 2L2 16"></path></svg></a>
+<a href="#top" class="social" aria-label="SANAA on YouTube"><svg aria-hidden="true" width="22" height="18" viewBox="0 0 22 18" fill="none" stroke="#FDF2E0" stroke-width="1.8" stroke-linejoin="round"><rect x="1.5" y="2.5" width="19" height="13" rx="4"></rect><path d="M9 6v6l5-3z"></path></svg></a>
+<a href="#top" class="social" aria-label="SANAA on LinkedIn"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="#FDF2E0" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="16" height="16" rx="3"></rect><path d="M6 9v5M6 6v.01M9.5 14V9M9.5 11c0-1.5 1-2 2.2-2 1.2 0 2.3.6 2.3 2.4V14"></path></svg></a>
+<a href="#top" class="social" aria-label="SANAA on TikTok"><svg aria-hidden="true" width="18" height="20" viewBox="0 0 18 20" fill="none" stroke="#FDF2E0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v11.5a3.5 3.5 0 11-3.5-3.5M10 2c.5 2.6 2.4 4.4 5 4.6"></path></svg></a>
+</div>
+</div>
+<nav aria-label="Explore" class="foot-col" style="flex: 0 1 170px; display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">Explore</h2><a href="#creatives">Creatives</a><a href="#wall">The Creative Wall</a><a href="#sides">Opportunities</a><a href="#join">Join SANAA</a></nav>
+<nav aria-label="Creative disciplines" class="foot-col" style="flex: 0 1 190px; display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">Creative disciplines</h2><a href="#disciplines">Graphic design</a><a href="#disciplines">Photography</a><a href="#disciplines">Illustration</a><a href="#disciplines">Fashion</a><a href="#disciplines">Film &amp; animation</a><a href="#disciplines">Visual arts</a><a href="#disciplines">Writing</a><a href="#disciplines">3D &amp; digital art</a></nav>
+<nav aria-label="About SANAA" class="foot-col" style="flex: 0 1 170px; display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">About SANAA</h2><a href="#story">Our story</a><a href="#pillars">What you can do</a><a href="#story">Mission</a></nav>
+<div class="foot-col" style="flex: 0 1 200px; display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">Contact</h2><a href="#top">[contact email]</a><a href="#top">Partnerships</a><a href="#top">Press</a></div>
+</div>
+<p style="margin: 0; font: 900 clamp(40px, 6.4vw, 96px)/0.92 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase">A continent of creativity. <span style="color: #D5F244">Connected by SANAA.</span></p>
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #3A3731; padding-top: 20px; font-size: 14px; color: #CFC6B6">
+<span>© 2026 SANAA</span>
+<div class="foot-col" style="display: flex; gap: 24px"><a href="#top">Privacy policy</a><a href="#top">Terms</a></div>
+</div>
+</div>
+</footer>
+
+
+
+</div>
+
+<div id="preview" class="pv" hidden>
+<div class="pv-box" role="dialog" aria-modal="true" aria-labelledby="pv-title">
+<img id="pv-img" alt="">
+<div id="pv-quote" class="pv-quote" hidden><p></p></div>
+<div class="pv-body">
+<div style="display: flex; justify-content: flex-end"><button type="button" id="pv-close" aria-label="Close preview" style="width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #111111; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#111111" stroke-width="2" stroke-linecap="round"><path d="M3 3l12 12M15 3L3 15"></path></svg></button></div>
+<p id="pv-meta" style="margin: 0; font-size: 13px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #4A463F"></p>
+<h2 id="pv-title" style="margin: 0; font: 700 clamp(30px, 4vw, 44px)/1 'Fraunces', serif; letter-spacing: -0.03em"></h2>
+<p id="pv-by" style="margin: 0; font-size: 18px; font-weight: 600"></p>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #2B2925">[Project description written by the creative]</p>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; gap: 12px; padding-top: 12px">
+<a href="#creatives" class="btn pv-link" style="background: #D5F244; color: #111111">View profile</a>
+<a href="#creatives" class="btn pv-link" style="background: transparent; color: #111111; box-shadow: inset 0 0 0 1.5px #111111">Contact creative</a>
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+(function () {
+  var names = { graphic: 'Graphic design', photo: 'Photography', illus: 'Illustration', fashion: 'Fashion', film: 'Film & animation', visual: 'Visual arts', writing: 'Writing', digital: '3D & digital art' };
+  var ch = { a: 'Chapter 01 · Roots, reimagined', b: 'Chapter 02 · Bold on the body', c: 'Chapter 03 · Remix the archive', d: 'Chapter 04 · Tomorrow’s canvas', w: 'Chapter 04 · Tomorrow’s canvas' };
+  var works = {
+      a1: { title: 'Daughter of the Sun', by: 'Adaeze Nwosu', city: 'Lagos', disc: 'illus', img: 'img/n04.jpg', alt: 'Geometric illustration of a woman in profile with a patterned headwrap and a red sun' },
+      a2: { title: 'Rhythm in Orange', by: 'Kojo Asante', city: 'Accra', disc: 'illus', img: 'img/n02.jpg', alt: 'Orange and black patterned illustration of a woman in profile' },
+      a3: { title: 'Geometry of Grace', by: 'Lerato Mokoena', city: 'Johannesburg', disc: 'graphic', img: 'img/n11.jpg', alt: 'Flat graphic portrait of a woman in profile over bright geometric blocks' },
+      a4: { title: 'Sisters at Dusk', by: 'Halima Yusuf', city: 'Arusha', disc: 'visual', img: 'img/n16.jpg', alt: 'Painting of two women in profile with colourful headwraps under a pale sun' },
+      a5: { title: 'Night Cat', by: 'Tunde Adeyemi', city: 'Lagos', disc: 'illus', img: 'img/u-3.jpg', alt: 'Illustrated black cat on a colourful patterned background' },
+      b1: { title: 'Red Wall Afternoon', by: 'Amara Diallo', city: 'Dakar', disc: 'photo', img: 'img/n15.jpg', alt: 'Two models in bold printed clothes reclining against a red wall' },
+      b2: { title: 'Emerald Crown', by: 'Nyokabi Wairimu', city: 'Nairobi', disc: 'fashion', img: 'img/n03.jpg', alt: 'Woman in an emerald satin headwrap and gloves among palm leaves' },
+      b3: { title: 'Sunflower Static', by: 'Bisi Alade', city: 'Lagos', disc: 'photo', img: 'img/n06.jpg', alt: 'Woman in sunglasses with long braids against a sunflower print' },
+      b4: { title: 'Golden Harvest', by: 'Kwabena Osei', city: 'Kumasi', disc: 'photo', img: 'img/n01.jpg', alt: 'Portrait of a man with a crown of bananas and gold sculptural jewellery' },
+      b5: { title: 'Bloom', by: 'Fatoumata Keita', city: 'Bamako', disc: 'fashion', img: 'img/n05.jpg', alt: 'Model in a printed dress seated in a giant pink petal against blue' },
+      b6: { title: 'Sun Seeker', by: 'Amina Okafor', city: 'Nairobi', disc: 'photo', img: 'img/u-1.jpg', alt: 'Woman in blue sunglasses and orange earrings against bright colour' },
+      c1: { title: 'Carnival of Selves', by: 'Sipho Ndlovu', city: 'Durban', disc: 'visual', img: 'img/n08.jpg', alt: 'Collage of figures in vivid costumes, headpieces and checkerboard suits' },
+      c2: { title: 'Djino ’01', by: 'Moussa Traoré', city: 'Abidjan', disc: 'graphic', img: 'img/n07.jpg', alt: 'Retro poster of a woman in pink robes over lime rays and blue type' },
+      c3: { title: 'Sunday Archive', by: 'Yaa Mensah', city: 'Accra', disc: 'visual', img: 'img/n10.jpg', alt: 'Black and white figures collaged over bright blocks of colour' },
+      c4: { title: 'Dakar Express', by: 'Cheikh Ndiaye', city: 'Dakar', disc: 'film', img: 'img/n09.jpg', alt: 'Symmetrical collage of a blue face above two painted buses and drummers' },
+      c5: { title: 'Lines of Memory', by: 'Ayo Bello', city: 'Abuja', disc: 'visual', img: 'img/u-4.jpg', alt: 'Black and white portrait of a man with painted stripes across his head' },
+      d1: { title: 'Inner Orbit', by: 'Ruth Achieng', city: 'Kisumu', disc: 'digital', img: 'img/n14.jpg', alt: 'Digital artwork of a head filled with colourful surreal shapes on orange' },
+      d2: { title: 'I Create Symphonies', by: 'Omar Haddad', city: 'Cairo', disc: 'graphic', img: 'img/n13.jpg', alt: 'Experimental typographic poster in black and neon green hung on a stand' },
+      d3: { title: 'Brothers by the Sea', by: 'Jomo Kariuki', city: 'Mombasa', disc: 'visual', img: 'img/n12.jpg', alt: 'Painting of two young men embracing in front of palm trees' },
+      d4: { title: 'Concrete Hymns', by: 'Kwesi Boateng', city: 'Kumasi', disc: 'photo', img: 'img/u-2.jpg', alt: 'Black and white photograph of angular modern architecture' },
+      d5: { title: 'Looking Up', by: 'Wanjiru Kamau', city: 'Nairobi', disc: 'film', img: 'img/panel-creative.jpg', alt: 'Film still of a woman in an orange shirt looking upward' },
+      w1: { title: 'Letters Home', by: 'Wambui Njeri', city: 'Nairobi', disc: 'writing', img: null, quote: '“Every city I leave stays in my mouth like a song.”' }
+    };
+  var counts = {};
+  Object.keys(names).forEach(function (k) { counts[k] = 0; });
+  Object.keys(works).forEach(function (id) { counts[works[id].disc] += 1; });
+  var total = Object.keys(works).length;
+
+  // filters (wall chips + discipline cards)
+  var status = document.getElementById('wall-status');
+  function setFilter(f) {
+    document.querySelectorAll('.chip[data-filter]').forEach(function (c) {
+      var on = c.getAttribute('data-filter') === f;
+      c.classList.toggle('is-on', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+    });
+    document.querySelectorAll('[data-work]').forEach(function (t) {
+      t.classList.toggle('is-dim', f !== 'all' && t.getAttribute('data-disc') !== f);
+    });
+    if (status) {
+      status.textContent = f === 'all'
+        ? 'Showing all ' + total + ' works across 8 disciplines'
+        : 'Highlighting ' + names[f] + ' \u00b7 ' + counts[f] + (counts[f] === 1 ? ' work' : ' works');
+    }
+  }
+  document.querySelectorAll('[data-filter]').forEach(function (el) {
+    el.addEventListener('click', function () { setFilter(el.getAttribute('data-filter')); });
+  });
+
+  // project preview
+  var pv = document.getElementById('preview');
+  var pvImg = document.getElementById('pv-img');
+  var pvQuote = document.getElementById('pv-quote');
+  var pvClose = document.getElementById('pv-close');
+  var lastFocus = null;
+  function openWork(id) {
+    var w = works[id]; if (!w) return;
+    lastFocus = document.activeElement;
+    document.getElementById('pv-meta').textContent = names[w.disc] + ' \u00b7 ' + ch[id.charAt(0)];
+    document.getElementById('pv-title').textContent = w.title;
+    document.getElementById('pv-by').textContent = w.by + ' \u00b7 ' + w.city;
+    if (w.img) {
+      pvImg.src = w.img; pvImg.alt = w.alt || ''; pvImg.hidden = false; pvQuote.hidden = true;
+    } else {
+      pvImg.hidden = true; pvQuote.hidden = false; pvQuote.querySelector('p').textContent = w.quote || '';
+    }
+    pv.hidden = false;
+    document.body.style.overflow = 'hidden';
+    pvClose.focus();
+  }
+  function closeWork() {
+    pv.hidden = true;
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.querySelectorAll('[data-work]').forEach(function (t) {
+    t.addEventListener('click', function () { openWork(t.getAttribute('data-work')); });
+  });
+  pvClose.addEventListener('click', closeWork);
+  pv.addEventListener('click', function (e) { if (e.target === pv) closeWork(); });
+  pv.querySelectorAll('.pv-link').forEach(function (a) { a.addEventListener('click', closeWork); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !pv.hidden) closeWork();
+    if (e.key === 'Escape' && menu && !menu.hidden) toggleMenu(false);
+  });
+
+  // mobile menu
+  var menu = document.getElementById('mobile-menu');
+  var menuBtn = document.getElementById('menu-btn');
+  function toggleMenu(open) {
+    menu.hidden = !open;
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  menuBtn.addEventListener('click', function () { toggleMenu(menu.hidden); });
+  menu.querySelectorAll('[data-close-menu]').forEach(function (a) {
+    a.addEventListener('click', function () { toggleMenu(false); });
+  });
+  window.addEventListener('resize', function () { if (window.innerWidth > 860 && !menu.hidden) toggleMenu(false); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 112" width="112" height="112" role="img" aria-label="Sanaa">
+  <title>Sanaa</title>
+  <rect x="8.00" y="8.00" width="45.00" height="45.00" rx="10.00" fill="#FF6A13" transform="rotate(-6 30.50 30.50)"/>
+  <rect x="59.00" y="8.00" width="45.00" height="45.00" rx="10.00" fill="#D5F244" transform="rotate(5 81.50 30.50)"/>
+  <rect x="8.00" y="59.00" width="45.00" height="45.00" rx="10.00" fill="#A982F5" transform="rotate(4 30.50 81.50)"/>
+  <circle cx="81.50" cy="81.50" r="22.50" fill="#111111"/>
+</svg>
