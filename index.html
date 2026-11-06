@@ -229,6 +229,30 @@ a{color:#111111}a:hover{color:#B8430A}
 .gw-plaque{position:absolute;left:38%;top:89%;z-index:2;padding:3px 8px;background:#FDF2E0;border:1.5px solid #111111;font:800 9px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase}
 @media (prefers-reduced-motion:reduce){.gw{transition:none}}
 
+/* paint-the-canvas trail */
+.paint-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.paint-drop{position:absolute;opacity:.9;animation:paintfade 2.6s ease-out forwards;transform:scale(.2)}
+.paint-drip::after{content:"";position:absolute;left:42%;top:70%;width:22%;height:130%;border-radius:0 0 999px 999px;background:inherit}
+@keyframes paintfade{0%{transform:scale(.2)}12%{transform:scale(1.15)}22%{transform:scale(1);opacity:.9}75%{opacity:.75}100%{transform:scale(.95) translateY(6px);opacity:0}}
+.paint-hint{display:inline-flex;align-items:center;gap:8px;font:700 12px/1 'Inter',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#4A463F}
+.paint-hint i{width:10px;height:10px;border-radius:50%;background:#FF6A13;display:inline-block;box-shadow:12px 0 0 #D5F244,24px 0 0 #A982F5;margin-right:24px}
+@media (hover:none),(prefers-reduced-motion:reduce){.paint-hint{display:none}}
+/* rotating 'Made for …' */
+.madefor{margin:-6px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:.35em;font:700 clamp(22px,2.2vw,30px)/1.1 'Inter',sans-serif;letter-spacing:-.01em}
+.mf-words{display:inline-grid;align-items:baseline}
+.mf-words > span{grid-area:1/1;white-space:nowrap;opacity:0;transform:translateY(.5em) rotate(-4deg);transition:opacity .3s ease,transform .45s cubic-bezier(.3,1.6,.5,1)}
+.mf-words > span.is-on{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.mf-words > span{transition:none}}
+
+/* paint footsteps across the page */
+.step-layer{position:absolute;inset:0;overflow:hidden;pointer-events:none;user-select:none;-webkit-user-select:none;z-index:15}
+.step-layer *{pointer-events:none !important}
+.footstep{position:absolute;width:26px;height:42px;pointer-events:none;opacity:.95;transition:opacity .65s ease-out;filter:drop-shadow(1px 1px 0 rgba(17,17,17,.18))}
+.footstep svg{display:block}
+@keyframes steppress{0%{transform:scale(1.35);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes stepfade{0%,30%{opacity:.95}100%{opacity:0}}
+@media (hover:none),(prefers-reduced-motion:reduce){.step-layer{display:none}}
+
 
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -251,7 +275,8 @@ section[id],div[id^="ch"]{scroll-margin-top:16px}
 </head>
 <body>
 
-<div style="background: #FDF2E0; color: #111111; font-family: 'Inter', system-ui, sans-serif; min-height: 100%; overflow-x: hidden">
+<div data-steps style="background: #FDF2E0; color: #111111; font-family: 'Inter', system-ui, sans-serif; min-height: 100%; overflow-x: hidden; position: relative">
+<div class="step-layer" aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none; user-select: none; z-index: 15"></div>
 
 <!-- 01 NAVIGATION -->
 <header style="position: relative; z-index: 20; max-width: 1360px; margin: 0 auto; padding: 20px clamp(20px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 24px">
@@ -284,12 +309,14 @@ section[id],div[id^="ch"]{scroll-margin-top:16px}
 <section id="top" style="max-width: 1360px; margin: 0 auto; padding: 24px clamp(20px, 4vw, 56px) 72px; display: flex; flex-wrap: wrap; align-items: center; gap: 40px; position: relative">
 <div class="hero-text" style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
 <h1 class="hero-h1 hop" aria-label="A continent of creativity. An infinite canvas." style="margin: 0; position: relative; isolation: isolate; font: 900 clamp(40px, 5.9vw, 92px)/0.94 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase"><svg class="africa-splash" aria-hidden="true" viewBox="-80 -80 1160 1210" xmlns="http://www.w3.org/2000/svg"><defs><filter id="splF1" x="-12%" y="-12%" width="124%" height="124%"><feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="3" result="t"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t" scale="60" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter><filter id="splF2" x="-12%" y="-12%" width="124%" height="124%"><feTurbulence type="fractalNoise" baseFrequency="0.02" numOctaves="3" seed="8" result="t"></feTurbulence><feDisplacementMap in="SourceGraphic" in2="t" scale="42" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap></filter></defs><path d="M19 372 L13 345 L0 329 L16 310 L21 281 L19 251 L8 238 L10 225 L24 198 L37 185 L46 161 L73 135 L87 133 L116 109 L113 90 L130 60 L156 47 L170 23 L224 32 L278 11 L334 9 L348 3 L378 6 L395 0 L419 7 L411 16 L416 25 L414 38 L406 45 L408 51 L424 61 L478 74 L486 87 L533 102 L546 94 L544 82 L549 74 L570 65 L624 84 L676 94 L706 84 L736 92 L755 89 L765 115 L745 148 L776 195 L774 207 L793 223 L801 271 L815 281 L828 312 L883 358 L884 375 L898 390 L993 368 L1000 373 L991 410 L963 466 L933 502 L884 539 L861 568 L843 582 L826 612 L821 635 L830 642 L827 666 L845 699 L850 757 L830 787 L800 799 L763 832 L762 841 L774 864 L772 894 L732 916 L735 924 L725 961 L667 1020 L631 1037 L584 1036 L542 1050 L521 1035 L516 1017 L520 1003 L477 937 L463 865 L427 806 L427 772 L438 740 L454 717 L455 701 L443 676 L448 666 L429 617 L384 560 L398 500 L393 490 L376 476 L342 482 L318 453 L284 455 L228 475 L189 469 L141 481 L76 438 L41 386 L19 372 Z M990 764 L941 906 L916 916 L896 907 L884 863 L900 834 L894 796 L902 778 L929 771 L949 755 L951 741 L960 740 L971 717 L981 730 L990 764 Z" fill="#FFD54A" opacity="0.45" filter="url(#splF1)" transform="translate(-14 10) scale(1.03)"></path><g fill="#FFD54A" filter="url(#splF2)"><path d="M19 372 L13 345 L0 329 L16 310 L21 281 L19 251 L8 238 L10 225 L24 198 L37 185 L46 161 L73 135 L87 133 L116 109 L113 90 L130 60 L156 47 L170 23 L224 32 L278 11 L334 9 L348 3 L378 6 L395 0 L419 7 L411 16 L416 25 L414 38 L406 45 L408 51 L424 61 L478 74 L486 87 L533 102 L546 94 L544 82 L549 74 L570 65 L624 84 L676 94 L706 84 L736 92 L755 89 L765 115 L745 148 L776 195 L774 207 L793 223 L801 271 L815 281 L828 312 L883 358 L884 375 L898 390 L993 368 L1000 373 L991 410 L963 466 L933 502 L884 539 L861 568 L843 582 L826 612 L821 635 L830 642 L827 666 L845 699 L850 757 L830 787 L800 799 L763 832 L762 841 L774 864 L772 894 L732 916 L735 924 L725 961 L667 1020 L631 1037 L584 1036 L542 1050 L521 1035 L516 1017 L520 1003 L477 937 L463 865 L427 806 L427 772 L438 740 L454 717 L455 701 L443 676 L448 666 L429 617 L384 560 L398 500 L393 490 L376 476 L342 482 L318 453 L284 455 L228 475 L189 469 L141 481 L76 438 L41 386 L19 372 Z M990 764 L941 906 L916 916 L896 907 L884 863 L900 834 L894 796 L902 778 L929 771 L949 755 L951 741 L960 740 L971 717 L981 730 L990 764 Z"></path><circle cx="28" cy="310" r="15"></circle><circle cx="30" cy="307" r="10"></circle><circle cx="72" cy="328" r="11"></circle><circle cx="62" cy="295" r="6"></circle><circle cx="101" cy="326" r="12"></circle><circle cx="117" cy="315" r="16"></circle><circle cx="6" cy="450" r="3"></circle><circle cx="41" cy="472" r="2"></circle><circle cx="24" cy="479" r="2"></circle><circle cx="3" cy="474" r="9"></circle><circle cx="118" cy="116" r="7"></circle><circle cx="138" cy="101" r="5"></circle><circle cx="200" cy="119" r="10"></circle><circle cx="146" cy="105" r="4"></circle><circle cx="149" cy="123" r="10"></circle><circle cx="909" cy="570" r="8"></circle><circle cx="999" cy="527" r="2"></circle><circle cx="964" cy="593" r="10"></circle><circle cx="974" cy="537" r="3"></circle><circle cx="918" cy="506" r="6"></circle><circle cx="967" cy="550" r="17"></circle><circle cx="990" cy="636" r="3"></circle><circle cx="991" cy="641" r="7"></circle><circle cx="997" cy="655" r="5"></circle><circle cx="913" cy="264" r="4"></circle><circle cx="896" cy="225" r="7"></circle><circle cx="903" cy="243" r="14"></circle><circle cx="905" cy="216" r="13"></circle><circle cx="905" cy="249" r="12"></circle><circle cx="617" cy="1006" r="12"></circle><circle cx="623" cy="1023" r="10"></circle><circle cx="613" cy="1023" r="3"></circle><circle cx="645" cy="1026" r="4"></circle><circle cx="605" cy="999" r="7"></circle><circle cx="774" cy="1046" r="5"></circle><circle cx="764" cy="1046" r="3"></circle><circle cx="781" cy="1037" r="3"></circle><circle cx="331" cy="57" r="10"></circle><circle cx="333" cy="66" r="9"></circle><circle cx="307" cy="20" r="3"></circle><circle cx="357" cy="39" r="4"></circle><circle cx="876" cy="848" r="12"></circle><circle cx="868" cy="852" r="4"></circle><circle cx="879" cy="857" r="5"></circle><circle cx="840" cy="844" r="9"></circle><circle cx="871" cy="905" r="4"></circle><circle cx="1008" cy="421" r="4"></circle><circle cx="1005" cy="422" r="4"></circle><circle cx="996" cy="418" r="4"></circle></g><g fill="#FF6A13" filter="url(#splF2)"><circle cx="953" cy="281" r="9"></circle><circle cx="924" cy="284" r="3"></circle><circle cx="931" cy="300" r="11"></circle><circle cx="921" cy="272" r="2"></circle><circle cx="92" cy="641" r="7"></circle><circle cx="89" cy="674" r="3"></circle><circle cx="82" cy="645" r="8"></circle><circle cx="659" cy="1063" r="7"></circle><circle cx="667" cy="1076" r="6"></circle><circle cx="677" cy="1068" r="5"></circle><circle cx="265" cy="70" r="5"></circle><circle cx="254" cy="84" r="5"></circle><circle cx="259" cy="89" r="6"></circle><circle cx="1033" cy="759" r="7"></circle><circle cx="995" cy="772" r="6"></circle><circle cx="990" cy="768" r="3"></circle></g></svg><span aria-hidden="true" style="position: relative; white-space: nowrap">A c<span class="o-disc"><span></span></span>ntinent<span class="stk fun" style="position: absolute; left: calc(100% + 0.14em); top: 0.02em; background: #A982F5; color: #111111; font-size: 0.66em; transform: rotate(-8deg)">of<svg aria-hidden="true" width="60" height="48" viewBox="0 0 80 64" fill="none" stroke="#111111" stroke-width="7" stroke-linecap="round" style="position: absolute; right: -0.7em; top: -0.55em; width: 0.7em; height: 0.56em"><path d="M10 8l6 22M36 2l-2 26M66 14L46 34"></path></svg></span></span><br><span aria-hidden="true" style="position: relative; display: inline-block; margin-left: 0.42em"><span class="bl" style="--r: -5deg; --y: 0em; --i: 0">C</span><span class="bl" style="--r: 4deg; --y: -0.03em; --i: 1">r</span><span class="bl" style="--r: -3deg; --y: 0.02em; --i: 2">e</span><span class="bl" style="--r: 5deg; --y: -0.02em; --i: 3">a</span><span class="bl" style="--r: -4deg; --y: 0.03em; --i: 4">t</span><span class="bl" style="--r: 3deg; --y: -0.03em; --i: 5">i</span><span class="bl" style="--r: -5deg; --y: 0.01em; --i: 6">v</span><span class="bl" style="--r: 4deg; --y: -0.02em; --i: 7">i</span><span class="bl" style="--r: -2deg; --y: 0.03em; --i: 8">t</span><span class="bl" style="--r: 4deg; --y: 0em; --i: 9">y</span><span class="bl" style="--r: -3deg; --y: -0.02em; --i: 10">.</span><svg aria-hidden="true" viewBox="0 0 300 30" preserveAspectRatio="none" style="position: absolute; left: -2%; bottom: -0.16em; width: 104%; height: 0.26em; overflow: visible"><path fill="#FF6A13" d="M4 22 C70 6 180.67 -6.1 296.67 1.9 C299.67 2.9 299 13.11 295 13 C234.41 11.27 171.11 10.27 116.34 13.95 C76.21 16.66 42.68 22.92 8 28 C3 29 1 24 4 22 Z"></path></svg></span><br><span aria-hidden="true">An infinite</span> <span class="star toy" aria-hidden="true" style="--hr: 144deg; width: 0.5em; height: 0.5em; background: #FFD54A; vertical-align: 0.2em"></span><br><span class="fun pop" aria-hidden="true" style="color: #FF6A13; font-size: 1.12em; letter-spacing: -0.01em; display: inline-block; margin-left: 1.1em; transform: rotate(-5deg)">canvas.</span></h1>
+<p class="madefor" aria-label="Made for photographers, designers, illustrators, filmmakers, writers and 3D artists."><span aria-hidden="true">Made for</span><span class="mf-words" aria-hidden="true"><span class="is-on" style="font: italic 500 1.25em/1 'Fraunces', serif; letter-spacing: -0.03em; color: #111111">photographers.</span><span class="" style="font: 900 1.12em/1 'Archivo', sans-serif; font-stretch: 125%; text-transform: uppercase; letter-spacing: -0.02em; color: #111111">designers.</span><span class="" style="font: 400 1.12em/1 'Shrikhand', cursive; color: #FF6A13; text-shadow: 2px 2px 0 #111111">illustrators.</span><span class="" style="font: 400 1.15em/1 'Permanent Marker', cursive; color: #111111">filmmakers.</span><span class="" style="font: italic 600 1.25em/1 'Fraunces', serif; letter-spacing: -0.03em; color: #6D3FE0">writers.</span><span class="" style="font: 900 1.12em/1 'Archivo', sans-serif; font-stretch: 82%; text-transform: uppercase; color: transparent; -webkit-text-stroke: 1.5px #111111">3D artists.</span></span></p>
 <p style="margin: 0; max-width: 560px; font-size: 20px; line-height: 1.5; color: #2B2925; height: 111px">A home for African creatives to showcase their work, discover opportunities and connect with people who value their craft.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
 <a href="#creatives" class="btn" style="background: #111111; color: #FDF2E0; min-height: 56px; padding: 0 28px; font-size: 17px">Explore creatives<svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#FDF2E0" stroke-width="2.2" stroke-linecap="round"><path d="M3 11L11 3M5 3h6v6"></path></svg></a>
 <a href="#join" class="btn" style="background: #111111; color: #FDF2E0; min-height: 56px; padding: 0 28px; font-size: 17px">Showcase your work</a>
 </div>
 <a href="#wall" style="display: inline-flex; align-items: center; gap: 10px; font-weight: 700; font-size: 15px; padding: 8px 0; align-self: flex-start"><span aria-hidden="true" style="display: grid; grid-template-columns: repeat(2, 9px); gap: 2px"><span style="height: 9px; border-radius: 2px; background: #FF6A13"></span><span style="height: 9px; border-radius: 2px; background: #D5F244"></span><span style="height: 9px; border-radius: 2px; background: #A982F5"></span><span style="height: 9px; border-radius: 50%; background: #111111"></span></span>Read the Creative Wall ↓</a>
+<span class="paint-hint" aria-hidden="true"><i></i>Move your mouse to leave footprints</span>
 </div>
 <div class="hero-art" style="flex: 1 1 460px; min-width: 0; position: relative; padding: 24px 0 40px; width: 733px">
 <img loading="lazy" src="img/hero.jpg" alt="Collage of African creatives: a woman in a patterned headwrap, a man in a green blazer, a photographer and modern architecture, with bold colour shapes" style="width: 100%; height: auto; display: block">
@@ -566,7 +593,8 @@ section[id],div[id^="ch"]{scroll-margin-top:16px}
 <nav aria-label="About SANAA" class="foot-col" style="flex: 0 1 170px; display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">About SANAA</h2><a href="#story">Our story</a><a href="#pillars">What you can do</a><a href="#story">Mission</a></nav>
 <div class="foot-col" style="flex: 0 1 200px; display: flex; flex-direction: column; gap: 4px"><h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #D5F244">Contact</h2><a href="mailto:hello@sanaa.africa">hello@sanaa.africa</a><a href="#top">Partnerships</a><a href="#top">Press</a></div>
 </div>
-<p style="margin: 0; font: 900 clamp(40px, 6.4vw, 96px)/0.92 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase"><span class="jl">A continent<span class="mini" style="color: #FDF2E0">of</span>creativity.</span><span class="jl" style="margin-left: 1.6em"><span class="outline">Connected by</span> <span class="fun hop-foot" style="color: #D5F244; letter-spacing: 0; font-size: 0.9em; display: inline-block"><span class="bl" style="--r: -5deg; --i: 0">s</span><span class="bl" style="--r: 4deg; --i: 1">a</span><span class="bl" style="--r: -3deg; --i: 2">n</span><span class="bl" style="--r: 5deg; --i: 3">a</span><span class="bl" style="--r: -4deg; --i: 4">a</span><span class="bl" style="--r: 3deg; --i: 5">.</span></span></span></p>
+<p style="margin: 0; font: 900 clamp(40px, 6.4vw, 96px)/0.92 'Archivo', sans-serif; font-stretch: 82%; letter-spacing: -0.035em; text-transform: uppercase"><span class="jl">A continent<span class="mini" style="color: #FDF2E0">of</span>creativity.</span><span class="jl" style="margin-left: 1.6em"><span class="outline">Connected by</span> <span aria-hidden="true" style="color: #D5F244">↓</span></span></p>
+<p class="wordmark" aria-label="SANAA"><span aria-hidden="true" style="display: contents"><span class="wm" style="--wr: -7deg"><span class="wm-a">S</span><span class="wm-b" style="color: #FF6A13">s</span></span><span class="wm" style="--wr: 5deg"><span class="wm-a">A</span><span class="wm-b" style="color: #D5F244">a</span></span><span class="wm" style="--wr: -4deg"><span class="wm-a">N</span><span class="wm-b" style="color: #A982F5">n</span></span><span class="wm" style="--wr: 6deg"><span class="wm-a">A</span><span class="wm-b" style="color: #FFD54A">a</span></span><span class="wm" style="--wr: -5deg"><span class="wm-a">A</span><span class="wm-b" style="color: #FF6A13">a</span></span></span></p>
 <div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid #3A3731; padding-top: 20px; font-size: 14px; color: #CFC6B6">
 <span>© 2026 SANAA</span>
 <div class="foot-col" style="display: flex; gap: 24px"><a href="#top">Privacy policy</a><a href="#top">Terms</a></div>
@@ -700,6 +728,63 @@ section[id],div[id^="ch"]{scroll-margin-top:16px}
     a.addEventListener('click', function () { toggleMenu(false); });
   });
   window.addEventListener('resize', function () { if (window.innerWidth > 860 && !menu.hidden) toggleMenu(false); });
+  function stepTrail(e) {
+    if (e.pointerType && e.pointerType !== 'mouse') return;
+    if (e.buttons) return;
+    if (e.target && e.target.closest && e.target.closest('#wall, [role="dialog"], .gwall')) {
+      var lw = e.currentTarget.querySelector('.step-layer'); if (lw && lw.firstChild) lw.textContent = '';
+      e.currentTarget._step = null; return;
+    }
+    if (e.target && e.target.closest && e.target.closest('a, button, input, select, textarea, label, [role="button"], .tile, .disc-card, .gw, .pillar, .ltile, .toy, .stk, .chip')) { if (e.currentTarget._step) e.currentTarget._step = null; return; }
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var root = e.currentTarget, layer = root.querySelector('.step-layer');
+    if (!layer) return;
+    var r = root.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+    var st = root._step;
+    if (!st) { root._step = { x: x, y: y, left: false }; return; }
+    var dx = x - st.x, dy = y - st.y;
+    if (Math.sqrt(dx * dx + dy * dy) < 46) return;
+    var ang = Math.atan2(dy, dx);
+    st.x = x; st.y = y; st.left = !st.left;
+    var side = st.left ? -1 : 1;
+    var px = x + Math.cos(ang + Math.PI / 2) * 9 * side, py = y + Math.sin(ang + Math.PI / 2) * 9 * side;
+    // what is under the pointer? pick a paint colour that stands apart from it
+    var el = e.target, bg = null, busy = false;
+    while (el && el !== root.parentNode && el.nodeType === 1) {
+      var cs = getComputedStyle(el);
+      if (el.tagName === 'IMG' || el.tagName === 'VIDEO' || (cs.backgroundImage && cs.backgroundImage !== 'none' && el !== root)) { busy = true; break; }
+      var m = cs.backgroundColor.match(/rgba?\(([^)]+)\)/);
+      if (m) { var v = m[1].split(',').map(parseFloat); if (v.length < 4 || v[3] > 0.5) { bg = v; break; } }
+      el = el.parentNode;
+    }
+    if (!bg) bg = [253, 242, 224];
+    var pal = [[255, 106, 19], [213, 242, 68], [169, 130, 245], [255, 213, 74], [17, 17, 17], [253, 242, 224]];
+    var fill, stroke = 'none';
+    if (busy) { fill = '#FDF2E0'; stroke = '#111111'; }
+    else {
+      var ok = pal.filter(function (c) { var a = c[0] - bg[0], b = c[1] - bg[1], d = c[2] - bg[2]; return Math.sqrt(a * a + b * b + d * d) > 170; });
+      if (!ok.length) ok = [[17, 17, 17]];
+      var last = root._stepColor, pick = ok[Math.floor(Math.random() * ok.length)];
+      if (ok.length > 1 && last && pick.join() === last.join()) pick = ok[(ok.indexOf(pick) + 1) % ok.length];
+      root._stepColor = pick;
+      fill = 'rgb(' + pick.join(',') + ')';
+    }
+    if (layer.childElementCount > 14) layer.removeChild(layer.firstChild);
+    var f = document.createElement('span');
+    f.className = 'footstep';
+    f.style.cssText = 'position:absolute;width:26px;height:42px;pointer-events:none;opacity:.95;transition:opacity .65s ease-out;left:' + (px - 13) + 'px;top:' + (py - 21) + 'px';
+    f.style.transform = 'rotate(' + (ang * 180 / Math.PI + 90) + 'deg) scaleX(' + side + ')';
+    f.innerHTML = '<svg viewBox="0 0 24 40" width="26" height="42"><g fill="' + fill + '" stroke="' + stroke + '" stroke-width="1.4"><path d="M11 39c-5 0-7-4-7-10 0-6 2-11 3-15 1-2.6 3-3.6 5-3.6 3 0 5 2.4 5 5.6 0 3.6-1 6.4 0 10.4 1.3 5.4.6 12.6-6 12.6z"/><circle cx="5.6" cy="6.4" r="2.7"/><circle cx="10.2" cy="3.6" r="2.3"/><circle cx="14.4" cy="3.7" r="2"/><circle cx="17.6" cy="5.9" r="1.7"/><circle cx="19.6" cy="9" r="1.4"/></g></svg>';
+    layer.appendChild(f);
+    setTimeout(function () { f.style.opacity = '0'; }, 280);
+    setTimeout(function () { if (f.parentNode) f.parentNode.removeChild(f); }, 1000);
+  }
+
+  document.querySelectorAll('[data-steps]').forEach(function (el) { el.addEventListener('pointermove', stepTrail); });
+  var mfw = document.querySelectorAll('.mf-words > span'), mfi = 0;
+  if (mfw.length && !(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+    setInterval(function () { mfw[mfi].classList.remove('is-on'); mfi = (mfi + 1) % mfw.length; mfw[mfi].classList.add('is-on'); }, 2500);
+  }
 })();
 </script>
 
