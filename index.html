@@ -143,7 +143,26 @@ a{color:#111111}a:hover{color:#B8430A}
 .foot-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:32px 20px}
 .cta-img{height:170px}
 }
-@media (prefers-reduced-motion:reduce){
+.pillar h3{transition:transform .3s cubic-bezier(.3,1.6,.5,1)}
+.pillar:hover h3{transform:rotate(-3deg) scale(1.06)}
+.outline{color:transparent;-webkit-text-stroke:.025em #D5F244}
+.kin-track{display:flex;align-items:center;width:max-content;animation:kin 40s linear infinite}
+.kin{display:inline-block;font:900 clamp(56px,8vw,128px)/1 'Archivo',sans-serif;font-stretch:82%;letter-spacing:-.04em;text-transform:uppercase;color:#111111;transition:transform .45s cubic-bezier(.3,1.8,.5,1),font-stretch .45s ease;cursor:default}
+.pillar:hover h3{transform:rotate(-3deg) scale(1.06);font-stretch:118%}
+.pillar h3{transition:transform .3s cubic-bezier(.3,1.6,.5,1),font-stretch .4s ease}
+.trio{display:inline-block;align-self:flex-start;font:400 26px/1.1 'Shrikhand',cursive;padding:.08em .32em .16em;border:2px solid #111111;border-radius:.4em;box-shadow:3px 3px 0 #111111;transition:transform .45s cubic-bezier(.3,1.8,.5,1)}
+.trio:hover{transform:rotate(-6deg) scale(1.1)}
+.ltile{display:grid;place-items:center;width:64px;height:64px;border-radius:16px;border:2px solid #111111;box-shadow:3px 3px 0 #111111;font:400 34px/1 'Shrikhand',cursive;color:#111111;transition:transform .5s cubic-bezier(.3,1.8,.5,1),border-radius .4s ease;cursor:pointer}
+.ltile:hover{transform:translateY(-12px) rotate(var(--hr,-12deg)) scale(1.1) !important;border-radius:50%}
+.ltile:active{transform:scale(.85) !important}
+.hop-foot:hover .bl{animation:hop .5s ease both;animation-delay:calc(var(--i,0) * 50ms)}
+.wordmark{margin:0;display:flex;justify-content:space-between;align-items:flex-end;font:900 min(21vw,288px)/.78 'Archivo',sans-serif;font-stretch:115%;letter-spacing:-.04em;text-transform:uppercase;color:#FDF2E0;user-select:none;padding-top:.06em}
+.wm{display:inline-block;transition:transform .5s cubic-bezier(.3,1.8,.5,1),color .25s ease;cursor:default;transform-origin:50% 90%}
+.wm:hover{transform:translateY(-.08em) rotate(var(--wr,-6deg)) scale(1.04)}
+.wm:hover .wm-a{display:none}
+.wm .wm-b{display:none;font-family:'Shrikhand',cursive;font-weight:400;text-transform:lowercase;letter-spacing:0;font-size:.86em}
+.wm:hover .wm-b{display:inline}
+@media (prefers-reduced-motion:reduce){.wm{transition:none}}@media (prefers-reduced-motion:reduce){
 .a-spot,.a-orbit,.a-meetL,.a-meetR,.a-grow,.a-float{animation:none}
 .tile,.tile img,.btn,.cap,.disc-card{transition:none}
 .tile:hover,.btn:hover,.disc-card:hover,.tile:hover img{transform:none}
